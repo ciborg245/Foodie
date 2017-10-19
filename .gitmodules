@@ -1,0 +1,3 @@
+[submodule "FoodieApp"]
+	path = FoodieApp
+	url = https://github.com/DrCesar/FoodieApp
