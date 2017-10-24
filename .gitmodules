@@ -1,3 +1,6 @@
 [submodule "FoodieApp"]
 	path = FoodieApp
 	url = https://github.com/DrCesar/FoodieApp
+[submodule "App"]
+	path = App
+	url = https://github.com/DrCesar/FoodieApp

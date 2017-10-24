@@ -13,6 +13,7 @@ var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var cors = require('cors');
 var router = express.Router();
+var SuperLogin = require('superlogin');
 
 // Conexión a la base de datos
 mongoose.connect('mongodb://pro:foodie@ds040027.mlab.com:40027/foodie');
@@ -58,7 +59,7 @@ var menuItemSchema = new mongoose.Schema({
 
 var userSchema = new mongoose.Schema({
     username: String,
-    mail: String,
+    email: String,
     password: String,
     firstName: String,
     lastName: String,
@@ -71,7 +72,12 @@ var menuItemModel = mongoose.model('MenuItem', menuItemSchema);
 var restaurantModel = mongoose.model("Restaurant", restaurantSchema);
 var foodTypeModel = mongoose.model("foodType", foodTypeSchema);
 
+const usrController = require('./app/controllers/user.server.controller.js');
+
 //Routes
+
+app.route('/users').post(usrController.create);
+
 app.get('/api/menu', function(req, res) {
 
     console.log("Nombre de todos los tipos de comida.");
