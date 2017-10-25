@@ -10,22 +10,16 @@ var app = express();
 var mongoose = require('mongoose');
 var morgan = require('morgan');
 var bodyParser = require('body-parser');
-var methodOverride = require('method-override');
-var cors = require('cors');
 var router = express.Router();
-var SuperLogin = require('superlogin');
 
 // Conexión a la base de datos
 mongoose.connect('mongodb://pro:foodie@ds040027.mlab.com:40027/foodie');
-//mongoose.connect('mongodb://localhost/Restaurantes');
 
 // Configuraciónb necesaria para la REST API
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({'extended':'true'}));
 app.use(bodyParser.json());
 app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
-app.use(methodOverride());
-app.use(cors());
 
 app.use(function(req, res, next) {
    res.header("Access-Control-Allow-Origin", "*");
@@ -57,17 +51,6 @@ var menuItemSchema = new mongoose.Schema({
     { collection: "menu"
 });
 
-var userSchema = new mongoose.Schema({
-    username: String,
-    email: String,
-    password: String,
-    firstName: String,
-    lastName: String,
-    age: Number},
-    { collection: "users"
-});
-
-var userModel = mongoose.model('User', userSchema);
 var menuItemModel = mongoose.model('MenuItem', menuItemSchema);
 var restaurantModel = mongoose.model("Restaurant", restaurantSchema);
 var foodTypeModel = mongoose.model("foodType", foodTypeSchema);
